@@ -1,0 +1,159 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Контейнер для центрирования */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Hero блок */
+.hero {
+    background: url('./assets/hero-bg.jpg') center/cover no-repeat;
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 36px;
+    color: #000;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.btn {
+    background-color: #6f3496;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.btn:hover {
+    background-color: #420d65;
+}
+
+/* Калькулятор КБЖУ */
+.calculator {
+    padding: 50px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group label {
+    font-size: 16px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 8px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 16px;
+    display: none;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#result.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ======= СЕКЦИЯ РАЦИОНОВ ======= */
+#menus {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+#menus h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.menu-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.menu-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 280px;
+    text-align: left;
+    transition: transform 0.2s ease;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+}
+
+.menu-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.menu-card h3 {
+    font-size: 20px;
+    margin: 12px;
+}
+
+.menu-card p {
+    font-size: 16px;
+    color: #555;
+    margin: 0 12px 16px;
+}
+
+.buy-btn {
+    background-color: #6F3496;
+    color: #fff;
+    padding: 12px 16px;
+    border: none;
+    width: calc(100% - 24px);
+    margin: 0 12px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+.buy-btn:hover {
+    background-color: #420D65;
+}
