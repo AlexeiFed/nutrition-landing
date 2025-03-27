@@ -49,42 +49,21 @@ function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
 }
 
-// Объект с данными меню (должен быть объявлен ДО использования в функции)
 const MENU_ITEMS = {
-    "Рацион на 1200 ккал": { code: "1200", price: "500" },
-    "Рацион на 1500 ккал": { code: "1500", price: "700" },
-    "Рацион на 1800 ккал": { code: "1800", price: "900" }
+    "Рацион на 1200 ккал": { code: "1200", price: "5" },
+    "Рацион на 1500 ккал": { code: "1500", price: "7" },
+    "Рацион на 1800 ккал": { code: "1800", price: "9" }
 };
 
 function buyMenu(menuName) {
-    try {
-        // Проверяем существование меню
-        if (!MENU_ITEMS[menuName]) {
-            throw new Error(`Меню "${menuName}" не найдено`);
-        }
-
-        const menu = MENU_ITEMS[menuName];
-        const orderId = 'order_' + Date.now();
-
-        // Формируем URL с параметрами
-        const params = new URLSearchParams({
-            order: orderId,
-            menu: menu.code,
-            price: menu.price
-        });
-
-        const formUrl = `https://forms.yandex.ru/u/67e1568e90fa7bd8e501abc7/?${params.toString()}`;
-
-        // Открываем форму с обработкой блокировки popup
-        const newWindow = window.open(formUrl, '_blank');
-
-        if (!newWindow) {
-            // Альтернативный вариант если popup заблокирован
-            window.location.href = formUrl;
-        }
-
-    } catch (error) {
-        console.error("Ошибка в buyMenu:", error);
-        alert('Ошибка при открытии формы. Пожалуйста, попробуйте ещё раз.');
+    const menu = MENU_ITEMS[menuName];
+    if (!menu) {
+        alert('Меню не найдено');
+        return;
     }
+
+    const orderId = 'order_' + Date.now(); // Уникальный ID заказа
+    const formUrl = `https://forms.yandex.ru/u/67e1568e90fa7bd8e501abc7/?order=${orderId}&menu=${menu.code}&price=${menu.price}`;
+
+    window.open(formUrl, '_blank');
 }
