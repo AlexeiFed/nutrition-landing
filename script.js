@@ -76,19 +76,19 @@ function scrollToSection(id) {
 
 async function buyMenu(menuName) {
     const menuToType = {
-        "Рацион на 1200 ккал": "1200",
-        "Рацион на 1500 ккал": "1500",
-        "Рацион на 1800 ккал": "1800"
+        "Рацион на 1200 ккал": { code: "1200", price: "5" },
+        "Рацион на 1500 ккал": { code: "1500", price: "7" },
+        "Рацион на 1800 ккал": { code: "1800", price: "9" }
     };
 
     try {
         // 1. Исправлено: единообразное написание orderId (было orderID/orderId)
+        const selectedMenu = menuData[menuName];
         const orderId = 'order_' + Date.now();
         localStorage.setItem('currentOrder', menuToType[menuName]);
 
         // 2. Формируем URL без лишних пробелов
-        const formUrl = `https://forms.yandex.ru/u/67e1568e90fa7bd8e501abc7/?order=${orderId}&menu=${menuToType[menuName]}`;
-
+        const formUrl = `https://forms.yandex.ru/u/67e1568e90fa7bd8e501abc7/?order=${orderId}&menu=${selectedMenu.code}&price=${selectedMenu.price}`;
         // 3. Открываем форму с проверкой блокировки popup
         const newWindow = window.open(formUrl, '_blank');
 
