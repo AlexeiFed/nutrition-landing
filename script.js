@@ -76,36 +76,45 @@ function scrollToSection(id) {
 
 async function buyMenu(menuName) {
     const menuToType = {
-        "Рацион на 1500 ккал": "5",
-        "Рацион на 1800 ккал": "7",
-        "Рацион на 2000 ккал": "9"
+        "Рацион на 1200 ккал": "1200",
+        "Рацион на 1500 ккал": "1500",
+        "Рацион на 1800 ккал": "1800"
     };
 
-    //Сохраняем данные о заказе
-    const orderID = 'order_' + Date.now();
-    localStorage.setItem('currentOrder', menuToType[menuName]);
+    try {
+        // Сохраняем данные о заказе
+        const orderId = 'order_' + Date.now();
+        localStorage.setItem('currentOrder', menuToType[menuName]);
 
-    //Открываем форму оплаты
-    window.open(
-        `https://forms.yandex.ru/67e1568e90fa7bd8e501abc7?order=${orderId}&menu=${menuToType[menuName]}`,
-        "_blank"
-    );
+        // Формируем URL формы (убедитесь что ссылка правильная)
+        const formUrl = `https://forms.yandex.ru/u/67e1568e90fa7bd8e501abc7/?order=${orderId}&menu=${menuToType[menuName]}`;
 
-    //Проверяем оплату каждые 5 секунд
-    const checkInterval = setInterval(async () => {
-        try {
-            const response = await fetch(`/api/payment?menu_type=${menuToType[menuName]}`);
-            if (response.redirected) {
-                clearInterval(checkInterval);
-                window.location.href = response.url;
-            }
-        } catch (e) {
-            console.error("Payment check error:", e);
+        // Открываем форму в новом окне
+        const newWindow = window.open(formUrl, '_blank');
+
+        if (!newWindow) {
+            alert('Пожалуйста, разрешите всплывающие окна для этого сайта');
+            return;
         }
-    }, 5000);
 
+        // Проверяем оплату каждые 5 секунд (если нужно)
+        const checkInterval = setInterval(async () => {
+            try {
+                const response = await fetch(`/api/payment?menu_type=${menuToType[menuName]}`);
+                if (response.redirected) {
+                    clearInterval(checkInterval);
+                    window.location.href = response.url;
+                }
+            } catch (e) {
+                console.error("Payment check error:", e);
+                clearInterval(checkInterval);
+            }
+        }, 5000);
 
-
+    } catch (error) {
+        console.error("Error in buyMenu:", error);
+        alert('Произошла ошибка при открытии формы оплаты');
+    }
 
 }
 
