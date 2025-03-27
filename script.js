@@ -82,14 +82,14 @@ async function buyMenu(menuName) {
     };
 
     try {
-        // Сохраняем данные о заказе
+        // 1. Исправлено: единообразное написание orderId (было orderID/orderId)
         const orderId = 'order_' + Date.now();
         localStorage.setItem('currentOrder', menuToType[menuName]);
 
-        // Формируем URL формы (убедитесь что ссылка правильная)
+        // 2. Формируем URL без лишних пробелов
         const formUrl = `https://forms.yandex.ru/u/67e1568e90fa7bd8e501abc7/?order=${orderId}&menu=${menuToType[menuName]}`;
 
-        // Открываем форму в новом окне
+        // 3. Открываем форму с проверкой блокировки popup
         const newWindow = window.open(formUrl, '_blank');
 
         if (!newWindow) {
@@ -97,7 +97,7 @@ async function buyMenu(menuName) {
             return;
         }
 
-        // Проверяем оплату каждые 5 секунд (если нужно)
+        // 4. Опционально: проверка оплаты (если требуется)
         const checkInterval = setInterval(async () => {
             try {
                 const response = await fetch(`/api/payment?menu_type=${menuToType[menuName]}`);
@@ -115,6 +115,5 @@ async function buyMenu(menuName) {
         console.error("Error in buyMenu:", error);
         alert('Произошла ошибка при открытии формы оплаты');
     }
-
 }
 
