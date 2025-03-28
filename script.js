@@ -55,36 +55,67 @@ const MENU_ITEMS = {
     "Рацион на 1800 ккал": { code: "1800", price: "9" }
 };
 
+let currentOrderId = null;
+
+// Открытие модалки с формой оплаты
 function buyMenu(menuName) {
     const menu = MENU_ITEMS[menuName];
-    if (!menu) {
-        alert('Меню не найдено');
-        return;
-    }
+    if (!menu) return alert('Меню не найдено');
 
-    const orderId = 'order_' + Date.now();
-    const paymentUrl = `https://forms.yandex.ru/u/67e1568e90fa7bd8e501abc7/?order=${orderId}&menu=${menu.code}&price=${menu.price}`;
+    currentOrderId = 'order_' + Date.now();
+    const modal = document.getElementById('paymentModal');
+    const frame = document.getElementById('paymentFrame');
+    const statusDiv = document.getElementById('paymentStatus');
 
-    window.open(paymentUrl, '_blank');
+    // Показываем модалку
+    modal.style.display = 'block';
+    statusDiv.style.display = 'none';
+    frame.style.display = 'block';
 
-    // Добавляем проверку статуса оплаты и скачивание
-    setTimeout(() => {
-        fetch(`/api/payment?menu_type=${menu.code}&payment_status=success`)
-            .then(response => {
-                if (response.ok) {
-                    return response.blob();
-                }
-                throw new Error('Ошибка при загрузке файла');
-            })
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `menu_${menu.code}.pdf`;
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-            })
-            .catch(error => console.error('Ошибка загрузки:', error));
-    }, 3000); // Таймер для ожидания подтверждения оплаты
+    // Загружаем форму оплаты
+    frame.src = `https://forms.yandex.ru/u/67e1568e90fa7bd8e501abc7/?order=${currentOrderId}&menu=${menu.code}&price=${menu.price}`;
+
+    // Закрытие модалки
+    document.querySelector('.close').onclick = () => {
+        modal.style.display = 'none';
+        checkPaymentStatus(menu.code); // Проверяем оплату при закрытии
+    };
+}
+
+// Проверка статуса оплаты
+async function checkPaymentStatus(menuType) {
+    const statusDiv = document.getElementById('paymentStatus');
+    statusDiv.style.display = 'block';
+    document.getElementById('paymentFrame').style.display = 'none';
+
+    // Проверяем каждые 5 секунд (5 попыток)
+    let attempts = 0;
+    const interval = setInterval(async () => {
+        attempts++;
+        const response = await fetch(`/api/check-payment?order_id=${currentOrderId}`);
+        const result = await response.json();
+
+        if (result.paid || attempts >= 5) {
+            clearInterval(interval);
+            if (result.paid) {
+                statusDiv.innerHTML = '<h3>✅ Оплата подтверждена! Скачиваем меню...</h3>';
+                downloadMenu(menuType);
+            } else {
+                statusDiv.innerHTML = '<h3>❌ Оплата не найдена. Попробуйте позже.</h3>';
+            }
+            setTimeout(() => {
+                document.getElementById('paymentModal').style.display = 'none';
+            }, 3000);
+        }
+    }, 5000);
+}
+
+// Скачивание файла
+function downloadMenu(menuType) {
+    const driveFiles = {
+        "1200": "1YnjdGwwZM_sF2iwzxg7o_-o4y72-IEqi",
+        "1500": "1YnjdGwwZM_sF2iwzxg7o_-o4y72-IEqi",
+        "1800": "1aJD2E8o3HfBFavs2zsQUs58rPKHdnZ2n"
+    };
+    window.open(`https://drive.google.com/uc?export=download&id=${driveFiles[menuType]}`, '_blank');
 }

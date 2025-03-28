@@ -1,12 +1,14 @@
+const paidOrders = new Set();
+
 export default async (req, res) => {
-    if (req.method !== 'POST') {
-        console.log('⚠️ Не POST-запрос');
-        return res.status(405).end();
+    if (req.method !== 'POST') return res.status(405).end();
+
+    const { event, object } = req.body;
+
+    if (event === 'payment.succeeded' && object.status === 'succeeded') {
+        const orderId = object.metadata.order_id;
+        paidOrders.add(orderId);
     }
 
-    // Логируем тело запроса
-    console.log('📤 Тело запроса от ЮMoney:', JSON.stringify(req.body, null, 2));
-
-    // Для теста всегда возвращаем 200 OK
-    res.status(200).json({ received: true });
+    res.status(200).end();
 };
