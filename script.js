@@ -62,8 +62,29 @@ function buyMenu(menuName) {
         return;
     }
 
-    const orderId = 'order_' + Date.now(); // Уникальный ID заказа
-    const formUrl = `https://forms.yandex.ru/u/67e1568e90fa7bd8e501abc7/?order=${orderId}&menu=${menu.code}&price=${menu.price}`;
+    const orderId = 'order_' + Date.now();
+    const paymentUrl = `https://forms.yandex.ru/u/67e1568e90fa7bd8e501abc7/?order=${orderId}&menu=${menu.code}&price=${menu.price}`;
 
-    window.open(formUrl, '_blank');
+    window.open(paymentUrl, '_blank');
+
+    // Добавляем проверку статуса оплаты и скачивание
+    setTimeout(() => {
+        fetch(`/api/payment?menu_type=${menu.code}&payment_status=success`)
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw new Error('Ошибка при загрузке файла');
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `menu_${menu.code}.pdf`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            })
+            .catch(error => console.error('Ошибка загрузки:', error));
+    }, 3000); // Таймер для ожидания подтверждения оплаты
 }
