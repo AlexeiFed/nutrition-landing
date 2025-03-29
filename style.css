@@ -15,7 +15,7 @@ body {
 
 /* Hero блок */
 .hero {
-    background: url('./assets/hero-bg.jpg') center/cover no-repeat;
+    background: url('./assets/hero-bg.jpg') top/cover no-repeat;
     color: white;
     padding: 100px 0;
     text-align: center;
