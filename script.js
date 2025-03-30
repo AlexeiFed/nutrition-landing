@@ -1,12 +1,41 @@
+// Обработчики для кнопок +/-
+document.querySelectorAll('.number-input').forEach(inputGroup => {
+    const minusBtn = inputGroup.querySelector('.number-input__minus');
+    const plusBtn = inputGroup.querySelector('.number-input__plus');
+    const input = inputGroup.querySelector('.number-input__value');
+
+    minusBtn.addEventListener('click', () => {
+        changeNumber(input, -1);
+    });
+
+    plusBtn.addEventListener('click', () => {
+        changeNumber(input, 1);
+    });
+});
+
+function changeNumber(input, direction) {
+    const min = parseFloat(input.min) || 0;
+    const max = parseFloat(input.max) || Infinity;
+    const step = parseFloat(input.step) || 1;
+    let value = parseFloat(input.value) || min;
+
+    value += direction * step;
+    value = Math.max(min, Math.min(max, value));
+
+    // Определяем количество знаков после запятой
+    const decimals = input.step.includes('.') ? input.step.split('.')[1].length : 0;
+    input.value = value.toFixed(decimals);
+}
+
 document.getElementById('bmrForm').addEventListener('submit', function (e) {
     e.preventDefault();
     hideError();
 
-    const gender = document.getElementById('gender').value;
+    const gender = document.querySelector('input[name="gender"]:checked').value;
     const age = parseInt(document.getElementById('age').value);
     const weight = parseFloat(document.getElementById('weight').value);
     const height = parseFloat(document.getElementById('height').value);
-    const activity = parseFloat(document.getElementById('activity').value);
+    const activity = parseFloat(document.querySelector('input[name="activity"]:checked').value);
 
     // Валидация
     if (isNaN(age) || age < 10 || age > 100) {
@@ -27,10 +56,12 @@ document.getElementById('bmrForm').addEventListener('submit', function (e) {
         ? 88.36 + (13.4 * weight) + (4.8 * height) - (5.7 * age)
         : 447.6 + (9.2 * weight) + (3.1 * height) - (4.3 * age);
 
-    const calories = bmr * activity;
-    const resultElement = document.getElementById('result');
-    resultElement.innerHTML = `Ваша дневная норма калорий: <strong>${Math.round(calories)}</strong> ккал`;
-    resultElement.classList.add('show');
+    const maintenanceCalories = Math.round(bmr * activity);
+    const weightLossCalories = Math.max(Math.round(maintenanceCalories * 0.85), 1200);
+
+    document.getElementById('maintenanceCalories').textContent = maintenanceCalories + ' ккал';
+    document.getElementById('weightLossCalories').textContent = weightLossCalories + ' ккал';
+    document.getElementById('result').classList.add('show');
 });
 
 function showError(message) {
@@ -50,9 +81,8 @@ function scrollToSection(id) {
 }
 
 const MENU_ITEMS = {
-    "Рацион на 1200 ккал": { code: "1200", price: "5", number: "1YnjdGwwZM_sF2iwzxg7o_-o4y72-IEqi" },
-    "Рацион на 1500 ккал": { code: "1500", price: "7", number: "1YnjdGwwZM_sF2iwzxg7o_-o4y72-IEqi" },
-    "Рацион на 1800 ккал": { code: "1800", price: "9", number: "1aJD2E8o3HfBFavs2zsQUs58rPKHdnZ2n" }
+    "Рацион на 1500 ккал": { code: "1200", price: "2", number: "1YnjdGwwZM_sF2iwzxg7o_-o4y72-IEqi" },
+    "Рацион на 2000 ккал": { code: "1800", price: "2", number: "1aJD2E8o3HfBFavs2zsQUs58rPKHdnZ2n" }
 };
 
 function buyMenu(menuName) {
@@ -64,7 +94,7 @@ function buyMenu(menuName) {
 
     const orderId = 'order_' + Date.now();
     // const paymentUrl = `https://forms.yandex.ru/u/67e1568e90fa7bd8e501abc7/?order=${orderId}&menu=${menu.code}&price=${menu.price}`;
-    const paymentUrl = `https://forms.yandex.ru/u/67e1568e90fa7bd8e501abc7/?number=${menu.number}&menu=${menu.code}&price=${menu.price}`;
+    const paymentUrl = `https://forms.yandex.ru/u/67e8e3d002848ff9a5704aef/?number=${menu.number}&menu=${menu.code}&price=${menu.price}`;
 
 
     window.open(paymentUrl, '_blank');

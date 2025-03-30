@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* font-family: Gilroy;*/
 }
 
 /* Контейнер для центрирования */
@@ -15,14 +16,16 @@ body {
 
 /* Hero блок */
 .hero {
-    background: url('./assets/hero-bg.jpg') top/cover no-repeat;
+    /* background: url('./assets/hero-bg.jpg') top/cover no-repeat;*/
     color: white;
     padding: 100px 0;
     text-align: center;
 }
 
 .hero h1 {
-    font-size: 36px;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 46px;
     color: #000;
 }
 
@@ -46,55 +49,131 @@ body {
     background-color: #420d65;
 }
 
-/* Калькулятор КБЖУ */
-.calculator {
-    padding: 50px 0;
+/* Новые стили для калькулятора */
+.calculator h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 40px;
 }
 
-form {
+.calculator h3 {
+    margin: 30px 0 0 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.input-description {
+    margin: 5px 0 10px;
+    color: #666;
+    font-size: 14px;
+}
+
+.number-input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.number-input__minus,
+.number-input__plus {
+    width: 40px;
+    height: 40px;
+    background: #6f3496;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.number-input__minus:hover,
+.number-input__plus:hover {
+    background: #420d65;
+}
+
+.number-input__value {
+    width: 80px;
+    height: 80px;
+    margin: 0 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.radio-group {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
-.form-group label {
-    font-size: 16px;
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
 }
 
-.form-group input,
-.form-group select {
-    padding: 8px;
-    font-size: 16px;
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.radio-label input {
+    margin: 0;
 }
 
-.error-message {
-    color: red;
-    margin-top: 10px;
-    font-size: 16px;
+.result-container {
+    margin-top: 30px;
     display: none;
 }
 
-#result {
-    margin-top: 20px;
-    font-size: 18px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.3s, transform 0.3s;
+.result-item {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
 }
 
-#result.show {
-    opacity: 1;
-    transform: translateY(0);
+.result-item h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.result-item p {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #6f3496;
+}
+
+.show {
+    display: block;
+}
+
+.number-input__value {
+    width: 80px;
+    height: 80px;
+    margin: 0 25px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 0;
+}
+
+/* Убираем стрелочки в числовом поле */
+.number-input__value::-webkit-inner-spin-button,
+.number-input__value::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* ======= СЕКЦИЯ РАЦИОНОВ ======= */
 #menus {
     padding: 40px 20px;
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
     text-align: center;
 }
 
@@ -105,7 +184,7 @@ form {
 
 .menu-container {
     display: flex;
-    gap: 20px;
+    gap: 40px;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -115,7 +194,7 @@ form {
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 280px;
+    width: 380px;
     text-align: left;
     transition: transform 0.2s ease;
 }
@@ -126,7 +205,7 @@ form {
 
 .menu-card img {
     width: 100%;
-    height: 180px;
+    height: 280px;
     object-fit: cover;
 }
 

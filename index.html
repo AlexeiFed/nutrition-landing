@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Готовые меню на разную калорийность</title>
     <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.cdnfonts.com/css/gilroy" rel="stylesheet">
 </head>
 
 <body>
@@ -16,47 +17,105 @@
             <p>
                 Сбалансированное питание для спортсменов и людей, следящих за питанием.
             </p>
-            <button class="btn" onclick="scrollToSection('calculator')">Выбрать рацион</button>
+            <!-- <button class="btn" onclick="scrollToSection('calculator')">Выбрать рацион</button> -->
+        </div>
+    </section>
+
+    <section id="menus">
+        <!--  <h2>Готовые меню на разную калорийность</h2> -->
+        <div class="menu-container">
+            <!-- Карточка рациона №1 -->
+            <div class="menu-card">
+                <img src="assets/menu1.jpeg" alt="Рацион 1500 ккал" />
+                <h3>Рацион на 1500 ккал</h3>
+                <p>Сбалансированное меню на 1500 ккал с простыми рецептами.</p>
+                <p>1500 ₽</p>
+                <button class="buy-btn" onclick="buyMenu('Рацион на 1500 ккал')">Купить</button>
+            </div>
+
+            <!-- Карточка рациона №2 -->
+            <div class="menu-card">
+                <img src="assets/menu2.jpeg" alt="Рацион 2000 ккал" />
+                <h3>Рацион на 2000 ккал</h3>
+                <p>Сбалансированное меню на 2000 ккал с простыми рецептами.</p>
+                <p>1500 ₽</p>
+                <button class="buy-btn" onclick="buyMenu('Рацион на 2000 ккал')">Купить</button>
+            </div>
+
         </div>
     </section>
 
     <!-- Калькулятор КБЖУ -->
     <section id="calculator" class="calculator">
         <div class="container">
-            <h2>Калькулятор КБЖУ</h2>
+            <h2>Узнай свою норму калорий</h2>
             <form id="bmrForm">
+                <!-- Пол -->
                 <div class="form-group">
-                    <label for="gender">Пол:</label>
-                    <select id="gender" required>
-                        <option value="male">Мужчина</option>
-                        <option value="female">Женщина</option>
-                    </select>
+                    <h3>Пол</h3>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="male" checked> Мужчина
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="female"> Женщина
+                        </label>
+                    </div>
                 </div>
 
+                <!-- Вес -->
                 <div class="form-group">
-                    <label for="age">Возраст:</label>
-                    <input type="number" id="age" required />
+                    <h3>ВЕС</h3>
+                    <p class="input-description">Введите ваш вес в килограммах</p>
+                    <div class="number-input">
+                        <button type="button" class="number-input__minus">-</button>
+                        <input type="number" id="weight" class="number-input__value" value="65" min="20" max="300"
+                            step="0.1" required>
+                        <button type="button" class="number-input__plus">+</button>
+                    </div>
                 </div>
 
+                <!-- Рост -->
                 <div class="form-group">
-                    <label for="weight">Вес (кг):</label>
-                    <input type="number" id="weight" step="0.1" required />
+                    <h3>РОСТ</h3>
+                    <p class="input-description">Введите ваш рост в сантиметрах</p>
+                    <div class="number-input">
+                        <button type="button" class="number-input__minus">-</button>
+                        <input type="number" id="height" class="number-input__value" value="170" min="100" max="250"
+                            required>
+                        <button type="button" class="number-input__plus">+</button>
+                    </div>
                 </div>
 
+                <!-- Возраст -->
                 <div class="form-group">
-                    <label for="height">Рост (см):</label>
-                    <input type="number" id="height" required />
+                    <h3>ВОЗРАСТ</h3>
+                    <p class="input-description">Введите ваш возраст</p>
+                    <div class="number-input">
+                        <button type="button" class="number-input__minus">-</button>
+                        <input type="number" id="age" class="number-input__value" value="25" min="10" max="100"
+                            required>
+                        <button type="button" class="number-input__plus">+</button>
+                    </div>
                 </div>
 
+                <!-- Активность -->
                 <div class="form-group">
-                    <label for="activity">Уровень активности:</label>
-                    <select id="activity" required>
-                        <option value="1.2">Сидячий образ жизни (менее 4000 шагов ежедневно, без тренировок)</option>
-                        <option value="1.375">Невысокий</option>
-                        <option value="1.55">Средний</option>
-                        <option value="1.725">Высокий</option>
-                        <option value="1.9">Очень высокий</option>
-                    </select>
+                    <h3>Уровень активности</h3>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="activity" value="1.2" checked> Сидячий образ жизни
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="activity" value="1.375"> Небольшая активность
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="activity" value="1.55"> Средняя активность
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="activity" value="1.725"> Высокая активность
+                        </label>
+                    </div>
                 </div>
 
                 <div id="error" class="error-message"></div>
@@ -64,39 +123,15 @@
                 <button type="submit" class="btn">Рассчитать</button>
             </form>
 
-            <div id="result"></div>
-        </div>
-
-    </section>
-
-
-
-
-    <section id="menus">
-        <h2>Готовые меню на разную калорийность</h2>
-        <div class="menu-container">
-            <!-- Карточка рациона №1 -->
-            <div class="menu-card">
-                <img src="assets/menu1.jpeg" alt="Рацион 1200 ккал" />
-                <h3>Рацион на 1200 ккал</h3>
-                <p>Сбалансированное меню на 1200 ккал с простыми рецептами.</p>
-                <button class="buy-btn" onclick="buyMenu('Рацион на 1200 ккал')">Купить</button>
-            </div>
-
-            <!-- Карточка рациона №2 -->
-            <div class="menu-card">
-                <img src="assets/menu2.jpeg" alt="Рацион 1500 ккал" />
-                <h3>Рацион на 1500 ккал</h3>
-                <p>Сбалансированное меню на 1500 ккал с простыми рецептами.</p>
-                <button class="buy-btn" onclick="buyMenu('Рацион на 1500 ккал')">Купить</button>
-            </div>
-
-            <!-- Карточка рациона №3 -->
-            <div class="menu-card">
-                <img src="assets/menu3.jpeg" alt="Рацион 1800 ккал" />
-                <h3>Рацион на 1800 ккал</h3>
-                <p>Сбалансированное меню на 1800 ккал с простыми рецептами.</p>
-                <button class="buy-btn" onclick="buyMenu('Рацион на 1800 ккал')">Купить</button>
+            <div id="result" class="result-container">
+                <div class="result-item">
+                    <h3>Ваша норма калорий для поддержания веса</h3>
+                    <p id="maintenanceCalories">-</p>
+                </div>
+                <div class="result-item">
+                    <h3>Ваша норма калорий для похудения</h3>
+                    <p id="weightLossCalories">-</p>
+                </div>
             </div>
         </div>
     </section>
