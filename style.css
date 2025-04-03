@@ -56,17 +56,18 @@ body {
     text-align: center;
     margin-bottom: 30px;
     font-size: 40px;
+    color: #e7e7e7;
 }
 
 .calculator h3 {
     margin: 30px 0 0 0;
     font-size: 18px;
-    color: #FF73C0;
+    color: #e7e7e7;
 }
 
 .input-description {
     margin: 5px 0 10px;
-    color: #666;
+    color: #919191;
     font-size: 14px;
 }
 
@@ -93,17 +94,7 @@ body {
 
 .number-input__minus:hover,
 .number-input__plus:hover {
-    background: #420d65;
-}
-
-.number-input__value {
-    width: 80px;
-    height: 80px;
-    margin: 0 5px;
-    text-align: center;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+    background: #fa1693;
 }
 
 .radio-group {
@@ -112,6 +103,7 @@ body {
     gap: 8px;
     margin-top: 15px;
     margin-bottom: 15px;
+    color: #e7e7e7;
 }
 
 .radio-label {
@@ -131,7 +123,13 @@ body {
 }
 
 .result-item {
-    background: #f5f5f5;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    /* Для Safari */
+    border-radius: 12px;
+    border: 1px solid #FF73C0;
+    box-shadow: 0 2px 4px #FF73C0;
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 15px;
@@ -140,14 +138,14 @@ body {
 .result-item h3 {
     margin: 0 0 10px 0;
     font-size: 16px;
-    color: #333;
+    color: #e7e7e7;
 }
 
 .result-item p {
     margin: 0;
     font-size: 24px;
     font-weight: bold;
-    color: #6f3496;
+    color: #FF73C0;
 }
 
 .show {
@@ -155,13 +153,21 @@ body {
 }
 
 .number-input__value {
-    width: 80px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    /* Для Safari */
+    border-radius: 12px;
+    border: 1px solid #FF73C0;
+    box-shadow: 0 2px 4px #FF73C0;
+    width: 120px;
     height: 80px;
     margin: 0 25px;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 1px solid #FF73C0;
     border-radius: 4px;
     font-size: 16px;
+    color: #e7e7e7;
     padding: 0;
 }
 
@@ -194,14 +200,18 @@ body {
 }
 
 .menu-card {
-    background-color: #5c5b5b;
-    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    /* Для Safari */
+    border-radius: 12px;
     border: 1px solid #FF73C0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 3px 12px #FF73C0;
     width: 380px;
     padding: 30px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 .menu-card:hover {
     transform: translateY(-5px);
@@ -274,7 +284,7 @@ body {
 .menu-price {
     font-size: 20px;
     font-weight: 700;
-    color: #0f0f0f;
+    color: #fcfbfb;
 }
 
 .buy-btn {
@@ -334,7 +344,7 @@ body {
 
 .loader {
     border: 5px solid #f3f3f3;
-    border-top: 5px solid #6f3496;
+    border-top: 5px solid #FF73C0;
     border-radius: 50%;
     width: 50px;
     height: 50px;
