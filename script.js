@@ -16,15 +16,19 @@ document.querySelectorAll('.number-input').forEach(inputGroup => {
 function changeNumber(input, direction) {
     const min = parseFloat(input.min) || 0;
     const max = parseFloat(input.max) || Infinity;
-    const step = parseFloat(input.step) || 1;
     let value = parseFloat(input.value) || min;
 
-    value += direction * step;
+    // Изменяем значение на 1 или -1, независимо от step
+    value += direction;
     value = Math.max(min, Math.min(max, value));
 
-    // Определяем количество знаков после запятой
-    const decimals = input.step.includes('.') ? input.step.split('.')[1].length : 0;
-    input.value = value.toFixed(decimals);
+    // Сохраняем дробную часть, если она была
+    if (input.value.includes('.')) {
+        const decimals = input.value.split('.')[1].length;
+        input.value = value.toFixed(decimals);
+    } else {
+        input.value = value;
+    }
 }
 
 document.getElementById('bmrForm').addEventListener('submit', function (e) {
@@ -57,11 +61,28 @@ document.getElementById('bmrForm').addEventListener('submit', function (e) {
         : 447.6 + (9.2 * weight) + (3.1 * height) - (4.3 * age);
 
     const maintenanceCalories = Math.round(bmr * activity);
+    const muscleGainCalories = Math.round(maintenanceCalories * 1.15);
     const weightLossCalories = Math.max(Math.round(maintenanceCalories * 0.85), 1200);
 
     document.getElementById('maintenanceCalories').textContent = maintenanceCalories + ' ккал';
     document.getElementById('weightLossCalories').textContent = weightLossCalories + ' ккал';
-    document.getElementById('result').classList.add('show');
+
+    // Добавляем новый элемент для набора мышечной массы
+    const resultContainer = document.getElementById('result');
+    if (!document.getElementById('muscleGainCalories')) {
+        const muscleGainItem = document.createElement('div');
+        muscleGainItem.className = 'result-item';
+        muscleGainItem.id = 'muscleGainItem';
+        muscleGainItem.innerHTML = `
+            <h3>Ваша норма калорий для набора мышечной массы</h3>
+            <p id="muscleGainCalories">${muscleGainCalories} ккал</p>
+        `;
+        resultContainer.appendChild(muscleGainItem);
+    } else {
+        document.getElementById('muscleGainCalories').textContent = muscleGainCalories + ' ккал';
+    }
+
+    resultContainer.classList.add('show');
 });
 
 function showError(message) {
