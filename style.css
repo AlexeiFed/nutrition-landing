@@ -217,9 +217,7 @@ body {
 }
 
 .menu-card {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: transparent;
     /* Для Safari */
     border-radius: 12px;
     border: 3px solid #88f058;
