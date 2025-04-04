@@ -101,9 +101,10 @@ body {
 .number-input__plus {
     width: 40px;
     height: 40px;
-    background: #88f058;
-    color: #1A1A1A;
-    border: none;
+    color: #f3f3f3;
+    border: 1px solid #88f058;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
     font-size: 20px;
     cursor: pointer;
     border-radius: 4px;
