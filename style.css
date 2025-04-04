@@ -21,7 +21,11 @@ body {
     box-sizing: border-box;
     font-family: Gilroy, sans-serif;
     /*  background-color: #616161; */
-    background: linear-gradient(to bottom, #5c5b5b, #1A1A1A);
+    background: linear-gradient(to bottom, #464444, #1A1A1A);
+}
+
+.highlight {
+    color: #88f058;
 }
 
 
