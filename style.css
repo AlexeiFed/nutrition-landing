@@ -38,7 +38,7 @@ body {
 }
 
 .btn {
-    background-color: #FF73C0;
+    background-color: #88f058;
     color: #fff;
     padding: 12px 24px;
     border: none;
@@ -48,7 +48,7 @@ body {
 }
 
 .btn:hover {
-    background-color: #420d65;
+    background-color: #63e726;
 }
 
 /* Новые стили для калькулятора */
@@ -81,8 +81,8 @@ body {
 .number-input__plus {
     width: 40px;
     height: 40px;
-    background: #FF73C0;
-    color: white;
+    background: #88f058;
+    color: #1A1A1A;
     border: none;
     font-size: 20px;
     cursor: pointer;
@@ -94,7 +94,7 @@ body {
 
 .number-input__minus:hover,
 .number-input__plus:hover {
-    background: #fa1693;
+    background: #3da30e;
 }
 
 .radio-group {
@@ -128,8 +128,7 @@ body {
     -webkit-backdrop-filter: blur(12px);
     /* Для Safari */
     border-radius: 12px;
-    border: 1px solid #FF73C0;
-    box-shadow: 0 2px 4px #FF73C0;
+    border: 1px solid #88f058;
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 15px;
@@ -145,7 +144,7 @@ body {
     margin: 0;
     font-size: 24px;
     font-weight: bold;
-    color: #FF73C0;
+    color: #88f058;
 }
 
 .show {
@@ -158,13 +157,12 @@ body {
     -webkit-backdrop-filter: blur(12px);
     /* Для Safari */
     border-radius: 12px;
-    border: 1px solid #FF73C0;
-    box-shadow: 0 2px 4px #FF73C0;
+    border: 2px solid #88f058;
     width: 120px;
     height: 80px;
     margin: 0 25px;
     text-align: center;
-    border: 1px solid #FF73C0;
+    border: 1px solid #88f058;
     border-radius: 4px;
     font-size: 16px;
     color: #e7e7e7;
@@ -205,8 +203,8 @@ body {
     -webkit-backdrop-filter: blur(12px);
     /* Для Safari */
     border-radius: 12px;
-    border: 1px solid #FF73C0;
-    box-shadow: 0 3px 12px #FF73C0;
+    border: 2px solid #88f058;
+    /*    box-shadow: 0 3px 12px #FF73C0; */
     width: 380px;
     padding: 30px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -227,7 +225,7 @@ body {
 .menu-card h3 {
     font-size: 22px;
     font-weight: 700;
-    color: #FF73C0;
+    color: #f3f3f3;
     margin: 0 0 20px 0;
     /* text-transform: uppercase; */
     letter-spacing: 1px;
@@ -263,7 +261,7 @@ body {
     content: "+";
     position: absolute;
     left: 0;
-    color: #FF73C0;
+    color: #88f058;
     font-weight: normal;
     font-size: 28px;
     line-height: 1;
@@ -277,32 +275,32 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #FF73C0;
+    border-top: 1px solid #88f058;
     padding-top: 20px;
 }
 
 .menu-price {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 700;
-    color: #fcfbfb;
+    color: #88f058;
 }
 
 .buy-btn {
     background: none;
-    color: #FF73C0;
+    color: #f3f3f3;
     padding: 0;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 20px;
     transition: color 0.2s ease;
 }
 
 .buy-btn:hover {
-    color: #420D65;
+    color: #88f058;
 }
 
 .buy-btn svg {
@@ -344,7 +342,7 @@ body {
 
 .loader {
     border: 5px solid #f3f3f3;
-    border-top: 5px solid #FF73C0;
+    border-top: 5px solid #88f058;
     border-radius: 50%;
     width: 50px;
     height: 50px;
