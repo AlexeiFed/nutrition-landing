@@ -2,14 +2,14 @@
 
 @font-face {
     font-family: 'Gilroy';
-    src: url('/fonts/Gilroy-ExtraBold.woff');
+    src: url('fonts/Gilroy-ExtraBold.woff');
     font-weight: 800;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Gilroy';
-    src: url('/fonts/Gilroy-Light.woff');
+    src: url('fonts/Gilroy-Light.woff');
     font-weight: 300;
     font-style: normal;
 }
@@ -213,15 +213,27 @@ body {
     padding: 80px 20px;
 }
 
+/*      .menu-card {
+            background: transparent;
+            /* Для Safari */
+/*         border-radius: 12px;
+            border: 3px solid #88f058;
+            /*    box-shadow: 0 3px 12px #FF73C0; */
+/*         width: 380px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        } */
+
 .menu-card {
-    background: transparent;
-    /* Для Safari */
-    border-radius: 12px;
+    background: rgba(68, 67, 67, 0.2);
+    /* Белый с 20% непрозрачностью */
+    backdrop-filter: blur(10px);
+    /* Размытие фона */
     border: 3px solid #88f058;
-    /*    box-shadow: 0 3px 12px #FF73C0; */
-    width: 380px;
-    padding: 30px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    width: 300px;
 }
 
 
@@ -239,6 +251,16 @@ body {
 .menu-card h3 {
     font-size: 22px;
     font-weight: 700;
+
+    color: #f3f3f3;
+    margin: 0 0 10px 0;
+    /* text-transform: uppercase; */
+    letter-spacing: 1px;
+}
+
+.menu-card h4 {
+    font-size: 22px;
+    font-weight: 700;
     color: #f3f3f3;
     margin: 0 0 20px 0;
     /* text-transform: uppercase; */
@@ -251,10 +273,12 @@ body {
 }
 
 .menu-card-list p {
-    font-size: 18px;
-    color: #eeeded;
-    margin: 0 0 10px 0;
+    font-size: 16px;
+    text-transform: uppercase;
     font-weight: 500;
+    color: #c9c7c7;
+    margin: 10 0 20px 0;
+    font-weight: 800;
 }
 
 .menu-card-list ul {
@@ -289,7 +313,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #88f058;
     padding-top: 20px;
 }
 
@@ -371,5 +394,118 @@ body {
 
     100% {
         transform: rotate(360deg);
+    }
+}
+
+
+/* Мобильные стили */
+@media (max-width: 768px) {
+
+    /* Общие стили */
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        width: 95%;
+        padding: 0 10px;
+    }
+
+    /* Карточки меню */
+    .menu-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 10px;
+        gap: 20px;
+    }
+
+    .menu-card {
+        width: 100%;
+        max-width: 350px;
+        padding: 20px;
+    }
+
+    .menu-card h3,
+    .menu-card h4 {
+        font-size: 18px;
+    }
+
+    .menu-card-list li {
+        font-size: 15px;
+        padding-left: 25px;
+    }
+
+    .menu-price {
+        font-size: 20px;
+    }
+
+    .buy-btn {
+        font-size: 16px;
+        gap: 10px;
+    }
+
+    /* Калькулятор */
+    .calculator h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .radio-group {
+        gap: 6px;
+    }
+
+    .radio-label {
+        font-size: 14px;
+        align-items: flex-start;
+    }
+
+    .number-input {
+        margin-bottom: 30px;
+    }
+
+    .number-input__value {
+        width: 80px;
+        height: 60px;
+        margin: 0 15px;
+    }
+
+    .number-input__minus,
+    .number-input__plus {
+        width: 30px;
+        height: 30px;
+    }
+
+    /* Результаты */
+    .result-item h3 {
+        font-size: 14px;
+    }
+
+    .result-item p {
+        font-size: 20px;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .menu-card {
+        padding: 15px;
+    }
+
+    .menu-card-list li {
+        font-size: 14px;
+    }
+
+    .calculator h2 {
+        font-size: 24px;
+    }
+
+    .radio-label {
+        font-size: 12px;
+    }
+
+    .number-input__value {
+        width: 70px;
+        height: 50px;
+        font-size: 14px;
     }
 }
