@@ -231,7 +231,7 @@ body {
     /* Размытие фона */
     border: 3px solid #88f058;
     color: white;
-    padding: 12px 24px;
+    padding: 30px 30px;
     border-radius: 30px;
     width: 300px;
 }
@@ -317,7 +317,7 @@ body {
 
 .menu-price {
     font-size: 25px;
-    font-weight: 700;
+    font-weight: 800;
     color: #88f058;
 }
 
