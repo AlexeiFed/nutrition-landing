@@ -1,4 +1,4 @@
-/* Общие стили */
+/* Общие стили 
 
 @font-face {
     font-family: 'Gilroy';
@@ -12,14 +12,14 @@
     src: url('fonts/Gilroy-Light.woff');
     font-weight: 300;
     font-style: normal;
-}
+} */
 
 body {
     /*font-family: Arial, sans-serif; */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Gilroy, sans-serif;
+    font-family: 'Questrial', sans-serif;
     /*  background-color: #616161; */
     background: linear-gradient(to bottom, #302f2f, #1A1A1A);
 }
@@ -249,9 +249,8 @@ body {
 }
 
 .menu-card h3 {
-    font-size: 22px;
-    font-weight: 700;
-
+    font-size: 24px;
+    font-weight: 900;
     color: #f3f3f3;
     margin: 0 0 10px 0;
     /* text-transform: uppercase; */
@@ -260,7 +259,7 @@ body {
 
 .menu-card h4 {
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 900;
     color: #f3f3f3;
     margin: 0 0 20px 0;
     /* text-transform: uppercase; */
@@ -394,5 +393,85 @@ body {
 
     100% {
         transform: rotate(360deg);
+    }
+}
+
+/* Мобильные стили */
+@media (max-width: 768px) {
+
+    /* Общие стили */
+    body {
+        font-size: 16px;
+    }
+
+    .container {
+        width: 95%;
+        padding: 0 10px;
+    }
+
+
+    /* Калькулятор */
+    .calculator h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .radio-group {
+        gap: 6px;
+    }
+
+    .radio-label {
+        font-size: 14px;
+        align-items: flex-start;
+    }
+
+    .number-input {
+        margin-bottom: 30px;
+    }
+
+    .number-input__value {
+        width: 80px;
+        height: 60px;
+        margin: 0 15px;
+    }
+
+    .number-input__minus,
+    .number-input__plus {
+        width: 30px;
+        height: 30px;
+    }
+
+    /* Результаты */
+    .result-item h3 {
+        font-size: 14px;
+    }
+
+    .result-item p {
+        font-size: 20px;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .menu-card {
+        padding: 15px;
+    }
+
+    .menu-card-list li {
+        font-size: 14px;
+    }
+
+    .calculator h2 {
+        font-size: 24px;
+    }
+
+    .radio-label {
+        font-size: 12px;
+    }
+
+    .number-input__value {
+        width: 70px;
+        height: 50px;
+        font-size: 14px;
     }
 }
