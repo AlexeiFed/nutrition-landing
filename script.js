@@ -114,8 +114,8 @@ function scrollToSection(id) {
 }
 
 const MENU_ITEMS = {
-    "Рацион на 1500 ккал": { code: "1500", price: "2", number: "1id_TDA6RPypR6C2zRoDcX0KNOkKUyWc4" },
-    "Рацион на 2000 ккал": { code: "2000", price: "2", number: "1So1gS4Ode1hHE-f4fqF3sgJ0Kfo7XHr5" }
+    "Рацион на 1500 ккал": { code: "1500", price: "1500", number: "1id_TDA6RPypR6C2zRoDcX0KNOkKUyWc4" },
+    "Рацион на 2000 ккал": { code: "2000", price: "1500", number: "1So1gS4Ode1hHE-f4fqF3sgJ0Kfo7XHr5" }
 };
 
 function buyMenu(menuName) {
