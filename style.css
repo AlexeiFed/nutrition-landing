@@ -396,6 +396,64 @@ body {
     }
 }
 
+/* Блок "Остались вопросы?" */
+.questions-section {
+    padding: 60px 0;
+    background: linear-gradient(to bottom, #1A1A1A, #0a0a0a);
+}
+
+.questions-card {
+    background: rgba(68, 67, 67, 0.2);
+    backdrop-filter: blur(10px);
+    border: 3px solid #88f058;
+    border-radius: 30px;
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.questions-card h3 {
+    font-size: 28px;
+    color: #f3f3f3;
+    margin-bottom: 30px;
+    font-weight: 800;
+}
+
+.questions-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.question-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #f3f3f3;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 12px 20px;
+    border-radius: 8px;
+}
+
+.question-link:hover {
+    color: #88f058;
+    background: rgba(136, 240, 88, 0.1);
+    transform: translateY(-2px);
+}
+
+.question-link svg {
+    transition: transform 0.3s ease;
+}
+
+.question-link:hover svg {
+    transform: scale(1.1);
+}
+
 /* Мобильные стили */
 @media (max-width: 768px) {
 
@@ -449,6 +507,18 @@ body {
     .result-item p {
         font-size: 20px;
     }
+
+    .questions-card {
+        padding: 30px 20px;
+    }
+
+    .questions-card h3 {
+        font-size: 24px;
+    }
+
+    .question-link {
+        font-size: 16px;
+    }
 }
 
 /* Для очень маленьких экранов */
@@ -473,5 +543,19 @@ body {
         width: 70px;
         height: 50px;
         font-size: 14px;
+    }
+
+    .questions-card {
+        padding: 25px 15px;
+    }
+
+    .questions-card h3 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .question-link {
+        font-size: 15px;
+        padding: 10px 15px;
     }
 }
